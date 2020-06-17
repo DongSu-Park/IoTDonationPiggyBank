@@ -78,16 +78,5 @@ public class MainActivity extends AppCompatActivity {
                return true;
            }
        });
-//        // 이건 fragment 1 으로 이동
-//        btn_logout = findViewById(R.id.btn_logout);
-//        btn_logout.setOnClickListener(new View.OnClickListener() { // 로그아웃 버튼 클릭 시
-//            @Override
-//            public void onClick(View v) {
-//                FirebaseAuth.getInstance().signOut();
-//                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-//                startActivity(intent);
-//                finish();
-//            }
-//        });
     }
 }
