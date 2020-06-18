@@ -9,4 +9,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="NFC내용" />
+
+    <TextView
+        android:id="@+id/tv_get_coin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="가져온 금액 :" />
+
+    <TextView
+        android:id="@+id/tv_get_mileage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="환산한 마일리지 값 :" />
+
+    <Button
+        android:id="@+id/btn_nfcread_close"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="확인" />
 </LinearLayout>

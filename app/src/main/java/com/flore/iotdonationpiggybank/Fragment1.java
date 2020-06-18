@@ -59,7 +59,7 @@ public class Fragment1 extends Fragment {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             String getuid = user.getUid(); // 로그인한 회원의 uid 값이 가져옴
 
-            databaseReference.child("User").child(getuid).addValueEventListener(new ValueEventListener() {
+            databaseReference.child("User").child(getuid).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     myUser myUser = dataSnapshot.getValue(com.flore.iotdonationpiggybank.myUser.class);
