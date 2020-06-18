@@ -48,6 +48,8 @@ public class Fragment1 extends Fragment {
         // 프레그먼트 1 코드 실행
 
         btn_logout = viewGroup.findViewById(R.id.btn_logout);
+        btn_gotoNFC = viewGroup.findViewById(R.id.btn_gotoNFC);
+
         tv_welcome_nickname = viewGroup.findViewById(R.id.tv_welcome_nickname);
         tv_donation_check = viewGroup.findViewById(R.id.tv_donation_check);
         tv_mileage_check = viewGroup.findViewById(R.id.tv_mileage_check);
@@ -81,7 +83,13 @@ public class Fragment1 extends Fragment {
             e.getStackTrace();
         }
         // 적립하기 버튼 클릭 시
-
+        btn_gotoNFC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), NfcTagReadyActivity.class);
+                startActivity(intent);
+            }
+        });
 
         // 로그아웃 버튼 클릭 시
         btn_logout.setOnClickListener(new View.OnClickListener() {
