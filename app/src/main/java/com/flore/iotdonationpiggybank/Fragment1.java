@@ -104,4 +104,36 @@ public class Fragment1 extends Fragment {
 
         return viewGroup;
     }
+
+    @Override
+    public void onResume() { // 다시 돌아올경우 리플레쉬
+        super.onResume();
+        try{
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            String getuid = user.getUid(); // 로그인한 회원의 uid 값이 가져옴
+
+            databaseReference.child("User").child(getuid).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    myUser myUser = dataSnapshot.getValue(com.flore.iotdonationpiggybank.myUser.class);
+
+                    get_id = myUser.getUserName(); // 닉네임
+                    get_donation = myUser.getTotalCoin(); // 현재 기부한 금액
+                    get_mileage = myUser.getTotalMileage(); // 현재 남은 마일리지 금액
+
+                    tv_welcome_nickname.setText("안녕하세요 " + get_id + " 님");
+                    tv_donation_check.setText("기부한 금액 : " + get_donation);
+                    tv_mileage_check.setText("기부한 마일리지 : " + get_mileage);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Log.d("Fragment1","loadPost:onCancelled", databaseError.toException());
+                }
+            });
+
+        } catch (Exception e){
+            e.getStackTrace();
+        }
+    }
 }
