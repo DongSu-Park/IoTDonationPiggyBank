@@ -19,6 +19,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+
 public class NfcReadActivity extends AppCompatActivity {
     TextView tv_hw_id;
     TextView tv_get_coin;
@@ -32,6 +36,9 @@ public class NfcReadActivity extends AppCompatActivity {
     int newGetMileage;
 
     int getWaitCoin;
+    Double getDevicelat;
+    Double getDevicelng;
+
     String getMileage;
 
     public String get_user_donation_coin;
@@ -70,6 +77,8 @@ public class NfcReadActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 myDevice myDevice = dataSnapshot.getValue(com.flore.iotdonationpiggybank.myDevice.class);
                 getWaitCoin = myDevice.getWaitCoin(); // 중요~! : 하드웨어에서 유저가 동전 넣은 값을 가져옴
+                getDevicelat = myDevice.getLat();
+                getDevicelng = myDevice.getLng();
 
                 if( getWaitCoin > 0 ) {
                     // 2. Deviceid에 있는 waitCoin을 0으로 초기화
@@ -94,11 +103,26 @@ public class NfcReadActivity extends AppCompatActivity {
 
                                 tv_get_mileage.setText("얻은 마일리지 점수 : " + (getWaitCoin / 10));
 
+                                // 유저의 총 기부 금액과 마일리지 점수를 업데이트 하기
                                 if(!get_user_donation_coin.equals(String.valueOf(newGetCoin))){
                                     databaseReference.child("User").child(getuid).child("totalCoin").setValue(String.valueOf(newGetCoin));
                                     databaseReference.child("User").child(getuid).child("totalMileage").setValue(String.valueOf(newGetMileage));
 
                                     // 추가~! donation log 남기기
+                                    // 시간 가져오기
+                                    SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                                    Date time = new Date();
+                                    String time1 = format1.format(time); // 현재시간 나타내기
+
+                                    HashMap<Object, String> hashMap = new HashMap<>();
+                                    hashMap.put("insertCoin", String.valueOf(getWaitCoin));
+                                    hashMap.put("getMileage", String.valueOf(getWaitCoin / 10));
+                                    hashMap.put("date",time1);
+                                    hashMap.put("location_lat", String.valueOf(getDevicelat));
+                                    hashMap.put("location_lng", String.valueOf(getDevicelng));
+
+                                    // 기부금 로그 user 목록에 남기기
+                                    databaseReference.child("User").child(getuid).child("donationLog").child(time1).setValue(hashMap);
                                 }
                             }
 
