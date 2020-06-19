@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -69,8 +70,6 @@ public class NfcReadActivity extends AppCompatActivity {
         Intent getHardwareId = getIntent();
         hwID = getHardwareId.getStringExtra("hardwareDeviceId"); // 아이디값 가져옴
 
-        tv_hw_id.setText("넘어온 id값 " + hwID);
-
         // 1. 해당 디바이스 id의 모든 값을 가져옴
         databaseReference.child("Device").child(hwID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -80,7 +79,7 @@ public class NfcReadActivity extends AppCompatActivity {
                 getDevicelat = myDevice.getLat();
                 getDevicelng = myDevice.getLng();
 
-                if( getWaitCoin > 0 ) {
+                if ( getWaitCoin > 0 ) {
                     // 2. Deviceid에 있는 waitCoin을 0으로 초기화
                     tv_get_coin.setText("기부한 금액 : " + getWaitCoin);
                     databaseReference.child("Device").child(hwID).child("waitCoin").setValue(waitCoinZero);
@@ -100,7 +99,6 @@ public class NfcReadActivity extends AppCompatActivity {
                                 newGetCoin = Integer.parseInt(get_user_donation_coin) + getWaitCoin; // 더해진 값이 나와야함 (정상) (int)
                                 newGetMileage = Integer.parseInt(get_user_mileage) + (getWaitCoin / 10); // 환산한 마일리지 값 ex. 500 + (500/10) = 550 (오류)
 
-
                                 tv_get_mileage.setText("얻은 마일리지 점수 : " + (getWaitCoin / 10));
 
                                 // 유저의 총 기부 금액과 마일리지 점수를 업데이트 하기
@@ -108,7 +106,7 @@ public class NfcReadActivity extends AppCompatActivity {
                                     databaseReference.child("User").child(getuid).child("totalCoin").setValue(String.valueOf(newGetCoin));
                                     databaseReference.child("User").child(getuid).child("totalMileage").setValue(String.valueOf(newGetMileage));
 
-                                    // 추가~! donation log 남기기
+                                    // donation log 남기기
                                     // 시간 가져오기
                                     SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                                     Date time = new Date();
@@ -135,6 +133,8 @@ public class NfcReadActivity extends AppCompatActivity {
                     } catch (Exception e){
                         e.getStackTrace();
                     }
+                } else {
+                    Toast.makeText(NfcReadActivity.this,"기부금에 동전을 투입하지 않았습니다.",Toast.LENGTH_LONG).show();
                 }
             }
 
