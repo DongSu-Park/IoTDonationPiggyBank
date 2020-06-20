@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -23,12 +24,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class Fragment1 extends Fragment {
-    Button btn_gotoNFC; // 적립하기 화면 버튼
     Button btn_logout; // 로그아웃 버튼
 
     TextView tv_welcome_nickname; // 닉네임 표시
     TextView tv_donation_check; // 기부한 금액 표시
     TextView tv_mileage_check; // 마일리지 표시
+    ImageView iv_gotoNFC;
+    ImageView iv_gotoList;
+    ImageView iv_gotoMileage;
+    ImageView iv_gotoNews;
 
     public String get_id;
     public String get_donation;
@@ -39,16 +43,24 @@ public class Fragment1 extends Fragment {
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
 
-
     ViewGroup viewGroup;
+
+    public static Fragment1 newInstance() {
+        return new Fragment1();
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment1,container,false);
         // 프레그먼트 1 코드 실행
 
+        iv_gotoNFC = viewGroup.findViewById(R.id.iv_gotoNFC);
+        iv_gotoList = viewGroup.findViewById(R.id.iv_gotoList);
+        iv_gotoMileage = viewGroup.findViewById(R.id.iv_gotoMileage);
+        iv_gotoNews = viewGroup.findViewById(R.id.iv_gotoNews);
+
         btn_logout = viewGroup.findViewById(R.id.btn_logout);
-        btn_gotoNFC = viewGroup.findViewById(R.id.btn_gotoNFC);
 
         tv_welcome_nickname = viewGroup.findViewById(R.id.tv_welcome_nickname);
         tv_donation_check = viewGroup.findViewById(R.id.tv_donation_check);
@@ -68,9 +80,9 @@ public class Fragment1 extends Fragment {
                     get_donation = myUser.getTotalCoin(); // 현재 기부한 금액
                     get_mileage = myUser.getTotalMileage(); // 현재 남은 마일리지 금액
 
-                    tv_welcome_nickname.setText("안녕하세요 " + get_id + " 님");
-                    tv_donation_check.setText("기부한 금액 : " + get_donation);
-                    tv_mileage_check.setText("기부한 마일리지 : " + get_mileage);
+                    tv_welcome_nickname.setText("안녕하세요! " + get_id + " 님!");
+                    tv_donation_check.setText(get_donation + "원");
+                    tv_mileage_check.setText(get_mileage + "점");
                 }
 
                 @Override
@@ -82,12 +94,35 @@ public class Fragment1 extends Fragment {
         } catch (Exception e){
             e.getStackTrace();
         }
-        // 적립하기 버튼 클릭 시
-        btn_gotoNFC.setOnClickListener(new View.OnClickListener() {
+
+        // 이미지 뷰로 선택시 인텐트
+
+        iv_gotoNFC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), NfcTagReadyActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        iv_gotoList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((MainActivity)getActivity()).replaceFragment(Fragment2.newInstance());
+            }
+        });
+
+        iv_gotoMileage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((MainActivity)getActivity()).replaceFragment(Fragment3.newInstance());
+            }
+        });
+
+        iv_gotoNews.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((MainActivity)getActivity()).replaceFragment(Fragment4.newInstance());
             }
         });
 
@@ -121,9 +156,9 @@ public class Fragment1 extends Fragment {
                     get_donation = myUser.getTotalCoin(); // 현재 기부한 금액
                     get_mileage = myUser.getTotalMileage(); // 현재 남은 마일리지 금액
 
-                    tv_welcome_nickname.setText("안녕하세요 " + get_id + " 님");
-                    tv_donation_check.setText("기부한 금액 : " + get_donation);
-                    tv_mileage_check.setText("기부한 마일리지 : " + get_mileage);
+                    tv_welcome_nickname.setText("안녕하세요! " + get_id + " 님!");
+                    tv_donation_check.setText(get_donation + "원");
+                    tv_mileage_check.setText(get_mileage + "점");
                 }
 
                 @Override

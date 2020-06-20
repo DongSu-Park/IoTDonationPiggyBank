@@ -25,9 +25,9 @@ import java.util.Date;
 import java.util.HashMap;
 
 public class NfcReadActivity extends AppCompatActivity {
-    TextView tv_hw_id;
     TextView tv_get_coin;
     TextView tv_get_mileage;
+    TextView tv_nfcread_coin_check;
 
     Button btn_nfcread_close;
 
@@ -62,10 +62,10 @@ public class NfcReadActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nfcread);
 
-        tv_hw_id = findViewById(R.id.tv_hw_id);
         tv_get_coin = findViewById(R.id.tv_get_coin);
         tv_get_mileage = findViewById(R.id.tv_get_mileage);
         btn_nfcread_close = findViewById(R.id.btn_nfcread_close);
+        tv_nfcread_coin_check = findViewById(R.id.tv_nfcread_coin_check);
 
         Intent getHardwareId = getIntent();
         hwID = getHardwareId.getStringExtra("hardwareDeviceId"); // 아이디값 가져옴
@@ -81,7 +81,7 @@ public class NfcReadActivity extends AppCompatActivity {
 
                 if ( getWaitCoin > 0 ) {
                     // 2. Deviceid에 있는 waitCoin을 0으로 초기화
-                    tv_get_coin.setText("기부한 금액 : " + getWaitCoin);
+                    tv_get_coin.setText("기부 동전 금액 : " + getWaitCoin +"원");
                     databaseReference.child("Device").child(hwID).child("waitCoin").setValue(waitCoinZero);
 
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -99,7 +99,7 @@ public class NfcReadActivity extends AppCompatActivity {
                                 newGetCoin = Integer.parseInt(get_user_donation_coin) + getWaitCoin; // 더해진 값이 나와야함 (정상) (int)
                                 newGetMileage = Integer.parseInt(get_user_mileage) + (getWaitCoin / 10); // 환산한 마일리지 값 ex. 500 + (500/10) = 550 (오류)
 
-                                tv_get_mileage.setText("얻은 마일리지 점수 : " + (getWaitCoin / 10));
+                                tv_get_mileage.setText("적립 마일리지 점수 : " + (getWaitCoin / 10) + "점");
 
                                 // 유저의 총 기부 금액과 마일리지 점수를 업데이트 하기
                                 if(!get_user_donation_coin.equals(String.valueOf(newGetCoin))){
@@ -134,7 +134,11 @@ public class NfcReadActivity extends AppCompatActivity {
                         e.getStackTrace();
                     }
                 } else {
-                    Toast.makeText(NfcReadActivity.this,"기부금에 동전을 투입하지 않았습니다.",Toast.LENGTH_LONG).show();
+                    Toast.makeText(NfcReadActivity.this,"기부 저금통에 동전을 투입하지 않았습니다.",Toast.LENGTH_LONG).show();
+                    tv_nfcread_coin_check.setText("기부 저금통에 동전을 투입하지 않았습니다.");
+                    tv_get_coin.setText("");
+                    tv_get_mileage.setText("");
+
                 }
             }
 

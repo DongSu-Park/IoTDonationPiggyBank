@@ -49,7 +49,7 @@ public class NfcTagReadyActivity extends AppCompatActivity {
         if (mAdapter == null) {
             mText.setText("사용하기 전에 NFC를 활성화하세요.");
         } else {
-            mText.setText("NFC 태그를 스캔하세요.");
+            mText.setText("적립을 위해 기기 앞면의 NFC 태그면을 대주세요");
         }
 
         Intent targetIntent = new Intent(this, NfcTagReadyActivity.class);

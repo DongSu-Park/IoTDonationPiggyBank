@@ -1,30 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#DCDADA"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tv_nfcread_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:fontFamily="@font/gmarketsansttfmedium"
+            android:text="적립하기"
+            android:textColor="#000000"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        app:srcCompat="@drawable/pngwing" />
+
     <TextView
-        android:id="@+id/tv_hw_id"
+        android:id="@+id/tv_nfcread_coin_check"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="NFC내용" />
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/gmarketsansttfmedium"
+        android:gravity="center"
+        android:text="적립이 완료되었습니다"
+        android:textSize="28sp" />
 
     <TextView
         android:id="@+id/tv_get_coin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="가져온 금액 :" />
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/gmarketsansttfmedium"
+        android:gravity="center"
+        android:text="가져온 금액 :"
+        android:textColor="#000000"
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/tv_get_mileage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="환산한 마일리지 값 :" />
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/gmarketsansttfmedium"
+        android:gravity="center"
+        android:text="환산한 마일리지 값 :"
+        android:textColor="#000000"
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/btn_nfcread_close"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/gmarketsansttfmedium"
         android:text="확인" />
 </LinearLayout>

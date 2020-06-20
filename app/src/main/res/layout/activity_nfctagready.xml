@@ -1,12 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#DCDADA"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tv_nfcready_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:fontFamily="@font/gmarketsansttfmedium"
+            android:text="적립하기"
+            android:textColor="#000000"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        app:srcCompat="@drawable/nfctag" />
 
     <TextView
         android:id="@+id/tv_nfc_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="적립을 위해 NFC를 카드에 대주세요" />
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/gmarketsansttfbold"
+        android:gravity="center"
+        android:text="적립을 위해 기기 앞면의 NFC 태그면을 대주세요"
+        android:textColor="#000000"
+        android:textSize="30sp" />
 </LinearLayout>

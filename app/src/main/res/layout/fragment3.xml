@@ -4,9 +4,28 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#DCDADA"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tv_fragment3_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:fontFamily="@font/gmarketsansttfmedium"
+            android:text="마일리지 사용"
+            android:textColor="#000000"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
     <TextView
         android:id="@+id/textView6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="세번째 프레그먼트" />
+        android:text="여기에는 마일리지 사용하는 기프트콘 내용이 나와야함" />
 </LinearLayout>
