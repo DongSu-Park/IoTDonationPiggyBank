@@ -29,6 +29,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".NfcReadActivity"/>
+        <activity android:name=".MileageUsesItemTargetActivity"/>
 
     </application>
 

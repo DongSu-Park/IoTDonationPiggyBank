@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_gift_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="10dp"
@@ -35,8 +36,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:text="기프트콘 아이템 이름"
                 android:fontFamily="@font/gmarketsansttfmedium"
+                android:text="기프트콘 아이템 이름"
                 android:textColor="#000000"
                 android:textSize="16sp" />
 
@@ -48,8 +49,8 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="15dp"
-                android:text="기프트콘 제공처"
                 android:fontFamily="@font/gmarketsansttfmedium"
+                android:text="기프트콘 제공처"
                 android:textSize="14sp" />
 
             <TextView
@@ -58,8 +59,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:text="x,xxx P"
                 android:fontFamily="@font/gmarketsansttfbold"
+                android:text="x,xxx P"
                 android:textColor="#000000"
                 android:textSize="20sp" />
         </LinearLayout>
