@@ -9,6 +9,7 @@ public class myUser {
     String userProfile;
     String userUid;
 
+
     public String getTotalCoin() {
         return totalCoin;
     }
