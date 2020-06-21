@@ -32,6 +32,7 @@
         <activity android:name=".MileageUsesItemTargetActivity"/>
         <activity android:name=".MileageUsesItemGetActivity"/>
         <activity android:name=".NewsInfoActivity"/>
+        <activity android:name=".ManagerActivity"/>
 
     </application>
 

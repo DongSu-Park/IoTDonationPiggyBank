@@ -15,6 +15,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth loginAuth;
@@ -22,6 +27,9 @@ public class LoginActivity extends AppCompatActivity {
     Button btn_register; // 회원 가입 버튼
     Button btn_login;
     // Button btn_findpw;
+
+    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    private DatabaseReference databaseReference = firebaseDatabase.getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,10 +69,35 @@ public class LoginActivity extends AppCompatActivity {
                             if (task.isSuccessful()){
                                 FirebaseUser user = loginAuth.getCurrentUser();
                                 Toast.makeText(LoginActivity.this, "로그인에 성공하였습니다", Toast.LENGTH_LONG).show();
-                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                startActivity(intent);
-                                finish();
+
+                                String getuid = loginAuth.getCurrentUser().getUid(); // 로그인한 회원의 uid 값이 가져옴
+                                databaseReference.child("User").child(getuid).addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        myUser myUser = dataSnapshot.getValue(com.flore.iotdonationpiggybank.myUser.class);
+                                        String userProfile = myUser.getUserProfile();
+
+                                        if (userProfile.equals("1"))  // 일반 사용자 화면으로
+                                        {
+                                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                            startActivity(intent);
+                                            finish();
+                                        } else if (userProfile.equals("2")) // 사업주 화면으로
+                                        {
+                                            Intent intent = new Intent(LoginActivity.this, ManagerActivity.class);
+                                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                            startActivity(intent);
+                                            finish();
+                                        }
+
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                    }
+                                });
                             } else {
                                 Toast.makeText(LoginActivity.this, task.getException().toString(), Toast.LENGTH_LONG).show();
 

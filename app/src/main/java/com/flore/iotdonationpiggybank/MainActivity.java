@@ -31,8 +31,6 @@ public class MainActivity extends AppCompatActivity {
     Fragment3 fragment3;
     Fragment4 fragment4;
 
-    Button btn_logout;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

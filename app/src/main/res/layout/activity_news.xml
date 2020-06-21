@@ -107,13 +107,14 @@
 
     <TextView
         android:id="@+id/textView24"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:fontFamily="@font/gmarketsansttfmedium"
         android:gravity="center"
         android:text="이번달의 소중한 모금액으로 사단법인 비전케어에 사용되었습니다 "
         android:textColor="#000000"
-        android:textSize="14sp" />
+        android:textSize="12sp" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -123,6 +124,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_margin="10dp"
+                app:srcCompat="@drawable/news_sample_img" />
 
             <ImageView
                 android:id="@+id/imageView6"
