@@ -24,9 +24,9 @@
             android:textStyle="bold" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="여기에는 기부뉴스등이 나와야함(리사이클러뷰)" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_news_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </LinearLayout>

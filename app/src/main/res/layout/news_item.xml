@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lv_newslist"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:background="@drawable/item_round"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_news_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:fontFamily="@font/gmarketsansttfmedium"
+        android:text="2020.X월 업데이트" />
+
+    <TextView
+        android:id="@+id/tv_news_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:fontFamily="@font/gmarketsansttfmedium"
+        android:text="X월의 기부처 기부내용입니다."
+        android:textColor="#000000"
+        android:textSize="20sp" />
+</LinearLayout>
