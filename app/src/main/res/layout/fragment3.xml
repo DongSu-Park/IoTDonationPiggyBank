@@ -23,9 +23,9 @@
             android:textStyle="bold" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView6"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_gift_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="여기에는 마일리지 사용하는 기프트콘 내용이 나와야함" />
+        android:layout_height="wrap_content" />
+
 </LinearLayout>
