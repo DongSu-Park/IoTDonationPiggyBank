@@ -1,4 +1,4 @@
-package com.flore.iotdonationpiggybank;
+package com.flore.iotdonationpiggybank.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.flore.iotdonationpiggybank.R;
+import com.flore.iotdonationpiggybank.model.MyDevice;
+import com.flore.iotdonationpiggybank.model.MyUser;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -74,7 +77,7 @@ public class NfcReadActivity extends AppCompatActivity {
         databaseReference.child("Device").child(hwID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                myDevice myDevice = dataSnapshot.getValue(com.flore.iotdonationpiggybank.myDevice.class);
+                MyDevice myDevice = dataSnapshot.getValue(MyDevice.class);
                 getWaitCoin = myDevice.getWaitCoin(); // 중요~! : 하드웨어에서 유저가 동전 넣은 값을 가져옴
                 getDevicelat = myDevice.getLat();
                 getDevicelng = myDevice.getLng();
@@ -91,7 +94,7 @@ public class NfcReadActivity extends AppCompatActivity {
                         databaseReference.child("User").child(getuid).addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                myUser myUser = dataSnapshot.getValue(com.flore.iotdonationpiggybank.myUser.class);
+                                MyUser myUser = dataSnapshot.getValue(MyUser.class);
 
                                 get_user_donation_coin = myUser.getTotalCoin(); // 원래 유저가 기부한 총 금액 가져옴 (string)
                                 get_user_mileage = myUser.getTotalMileage(); // 원래 유저가 가지고 있는 마일리지 금액 가져 옴

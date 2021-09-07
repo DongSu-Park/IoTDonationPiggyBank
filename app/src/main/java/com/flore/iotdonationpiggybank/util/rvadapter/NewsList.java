@@ -1,4 +1,4 @@
-package com.flore.iotdonationpiggybank;
+package com.flore.iotdonationpiggybank.util.rvadapter;
 
 public class NewsList {
     String news_title;

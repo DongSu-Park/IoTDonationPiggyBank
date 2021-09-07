@@ -1,4 +1,4 @@
-package com.flore.iotdonationpiggybank;
+package com.flore.iotdonationpiggybank.util.rvadapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,24 +11,28 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.flore.iotdonationpiggybank.ui.activity.MileageUsesItemTargetActivity;
+import com.flore.iotdonationpiggybank.R;
+import com.flore.iotdonationpiggybank.ui.fragment.MileageUsesFragment;
+
 import java.util.ArrayList;
 
-public class giftListAdapter extends RecyclerView.Adapter<giftListAdapter.ItemViewHolder> {
+public class GiftListAdapter extends RecyclerView.Adapter<GiftListAdapter.ItemViewHolder> {
 
-    private ArrayList<giftListData> listData = new ArrayList<>();
-    private giftListData giftListData;
+    private ArrayList<GiftListData> listData = new ArrayList<>();
+    private GiftListData giftListData;
     Context context;
 
     @NonNull
     @Override
-    public giftListAdapter.ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public GiftListAdapter.ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.mileage_uses_item, parent, false);
         this.context = parent.getContext();
         return new ItemViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull giftListAdapter.ItemViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull GiftListAdapter.ItemViewHolder holder, int position) {
         holder.onBind(listData.get(position));
 
     }
@@ -38,7 +42,7 @@ public class giftListAdapter extends RecyclerView.Adapter<giftListAdapter.ItemVi
         return listData.size();
     }
 
-    void addItem(giftListData giftListData){
+    public void addItem(GiftListData giftListData){
         listData.add(giftListData);
     }
 
@@ -47,7 +51,7 @@ public class giftListAdapter extends RecyclerView.Adapter<giftListAdapter.ItemVi
         private TextView tv_gift_item_name;
         private TextView tv_gift_item_service;
         private TextView tv_gift_item_point;
-        private giftListData giftListData;
+        private GiftListData giftListData;
 
 
        ItemViewHolder(@NonNull View itemView) {
@@ -59,7 +63,7 @@ public class giftListAdapter extends RecyclerView.Adapter<giftListAdapter.ItemVi
            tv_gift_item_point = itemView.findViewById(R.id.tv_gift_item_point);
        }
 
-       void onBind(giftListData listData) {
+       void onBind(GiftListData listData) {
             this.giftListData = listData;
 
             iv_gift_item_img.setImageResource(listData.getGift_img_resid());
@@ -72,7 +76,7 @@ public class giftListAdapter extends RecyclerView.Adapter<giftListAdapter.ItemVi
 
        @Override
        public void onClick(View view) {
-           Fragment3 fragment3 = new Fragment3();
+           MileageUsesFragment mileageUsesFragment = new MileageUsesFragment();
            if(view.getId() == R.id.layout_gift_item){
                Intent intent = new Intent(context, MileageUsesItemTargetActivity.class);
 

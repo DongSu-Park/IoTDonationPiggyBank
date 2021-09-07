@@ -1,4 +1,4 @@
-package com.flore.iotdonationpiggybank;
+package com.flore.iotdonationpiggybank.ui.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,18 +11,22 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.flore.iotdonationpiggybank.R;
+import com.flore.iotdonationpiggybank.util.rvadapter.GiftListAdapter;
+import com.flore.iotdonationpiggybank.util.rvadapter.GiftListData;
+
 import java.util.Arrays;
 import java.util.List;
 
-public class Fragment3 extends Fragment {
+public class MileageUsesFragment extends Fragment {
     ViewGroup viewGroup;
 
     private RecyclerView rv_gift_list;
     private RecyclerView.LayoutManager layoutManager;
-    private giftListAdapter giftListAdapter;
+    private GiftListAdapter giftListAdapter;
 
-    public static Fragment3 newInstance() {
-        return new Fragment3();
+    public static MileageUsesFragment newInstance() {
+        return new MileageUsesFragment();
     }
 
 
@@ -46,7 +50,7 @@ public class Fragment3 extends Fragment {
         layoutManager = new LinearLayoutManager(getActivity());
         rv_gift_list.setLayoutManager(layoutManager);
 
-        giftListAdapter = new giftListAdapter();
+        giftListAdapter = new GiftListAdapter();
         rv_gift_list.setAdapter(giftListAdapter);
     }
 
@@ -80,7 +84,7 @@ public class Fragment3 extends Fragment {
         );
 
         for (int i = 0; i < list_gift_item_name.size(); i++){
-            giftListData giftListData = new giftListData();
+            GiftListData giftListData = new GiftListData();
             giftListData.setGift_img_resid(listResId.get(i));
             giftListData.setGift_item_name(list_gift_item_name.get(i));
             giftListData.setGift_item_service(list_gift_item_service.get(i));

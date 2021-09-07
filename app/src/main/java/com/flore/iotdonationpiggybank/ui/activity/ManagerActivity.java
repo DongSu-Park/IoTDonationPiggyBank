@@ -1,8 +1,7 @@
-package com.flore.iotdonationpiggybank;
+package com.flore.iotdonationpiggybank.ui.activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.ContextThemeWrapper;
 import android.view.View;
@@ -15,6 +14,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.flore.iotdonationpiggybank.R;
+import com.flore.iotdonationpiggybank.model.MyDevice;
+import com.flore.iotdonationpiggybank.model.MyUser;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -54,7 +56,7 @@ public class ManagerActivity extends AppCompatActivity {
             databaseReference.child("User").child(getuid).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    myUser myUser = dataSnapshot.getValue(com.flore.iotdonationpiggybank.myUser.class);
+                    MyUser myUser = dataSnapshot.getValue(MyUser.class);
                     tv_manager_nickname.setText("안녕하세요! " + myUser.getUserName() +" 님.");
                 }
 
@@ -72,7 +74,7 @@ public class ManagerActivity extends AppCompatActivity {
         databaseReference.child("Device").child("Device_01").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                myDevice myDevice = dataSnapshot.getValue(com.flore.iotdonationpiggybank.myDevice.class);
+                MyDevice myDevice = dataSnapshot.getValue(MyDevice.class);
                 device_total_money = myDevice.getTotalMoney();
                 tv_manager_donation_check.setText(String.valueOf(device_total_money) + "원");
             }

@@ -1,9 +1,9 @@
-package com.flore.iotdonationpiggybank;
+package com.flore.iotdonationpiggybank.model;
 
 import android.content.Context;
 import android.location.Geocoder;
 
-public class myDonationList {
+public class MyDonationList {
     String date;
     String getMileage;
     String insertCoin;

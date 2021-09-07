@@ -1,6 +1,6 @@
-package com.flore.iotdonationpiggybank;
+package com.flore.iotdonationpiggybank.model;
 
-public class myUser {
+public class MyUser {
     String totalCoin;
     String totalMileage;
     String userEmail;

@@ -1,4 +1,4 @@
-package com.flore.iotdonationpiggybank;
+package com.flore.iotdonationpiggybank.util.nfcreader;
 
 import android.net.Uri;
 import android.nfc.NdefRecord;

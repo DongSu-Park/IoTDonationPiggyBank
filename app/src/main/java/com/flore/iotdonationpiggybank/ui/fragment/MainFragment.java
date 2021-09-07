@@ -1,4 +1,4 @@
-package com.flore.iotdonationpiggybank;
+package com.flore.iotdonationpiggybank.ui.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,16 +14,20 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.flore.iotdonationpiggybank.R;
+import com.flore.iotdonationpiggybank.model.MyUser;
+import com.flore.iotdonationpiggybank.ui.activity.LoginActivity;
+import com.flore.iotdonationpiggybank.ui.activity.MainActivity;
+import com.flore.iotdonationpiggybank.ui.activity.NfcTagReadyActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class Fragment1 extends Fragment {
+public class MainFragment extends Fragment {
     Button btn_logout; // 로그아웃 버튼
 
     TextView tv_welcome_nickname; // 닉네임 표시
@@ -45,8 +49,8 @@ public class Fragment1 extends Fragment {
 
     ViewGroup viewGroup;
 
-    public static Fragment1 newInstance() {
-        return new Fragment1();
+    public static MainFragment newInstance() {
+        return new MainFragment();
     }
 
     @Nullable
@@ -74,7 +78,7 @@ public class Fragment1 extends Fragment {
             databaseReference.child("User").child(getuid).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    myUser myUser = dataSnapshot.getValue(com.flore.iotdonationpiggybank.myUser.class);
+                    MyUser myUser = dataSnapshot.getValue(MyUser.class);
 
                     get_id = myUser.getUserName(); // 닉네임
                     get_donation = myUser.getTotalCoin(); // 현재 기부한 금액
@@ -108,21 +112,21 @@ public class Fragment1 extends Fragment {
         iv_gotoList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((MainActivity)getActivity()).replaceFragment(Fragment2.newInstance());
+                ((MainActivity)getActivity()).replaceFragment(DonationLogFragment.newInstance());
             }
         });
 
         iv_gotoMileage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((MainActivity)getActivity()).replaceFragment(Fragment3.newInstance());
+                ((MainActivity)getActivity()).replaceFragment(MileageUsesFragment.newInstance());
             }
         });
 
         iv_gotoNews.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((MainActivity)getActivity()).replaceFragment(Fragment4.newInstance());
+                ((MainActivity)getActivity()).replaceFragment(DonationNewsFragment.newInstance());
             }
         });
 
@@ -150,7 +154,7 @@ public class Fragment1 extends Fragment {
             databaseReference.child("User").child(getuid).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    myUser myUser = dataSnapshot.getValue(com.flore.iotdonationpiggybank.myUser.class);
+                    MyUser myUser = dataSnapshot.getValue(MyUser.class);
 
                     get_id = myUser.getUserName(); // 닉네임
                     get_donation = myUser.getTotalCoin(); // 현재 기부한 금액

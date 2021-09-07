@@ -1,6 +1,6 @@
-package com.flore.iotdonationpiggybank;
+package com.flore.iotdonationpiggybank.util.rvadapter;
 
-public class giftListData {
+public class GiftListData {
     private int gift_img_resid; // 기프트콘 이미지
     private String gift_item_name; // 기프트콘 상품 이름
     private String gift_item_service; // 기프트콘 제공자 이름

@@ -1,12 +1,12 @@
-package com.flore.iotdonationpiggybank;
+package com.flore.iotdonationpiggybank.model;
 
-public class myDonationListToGeo {
+public class MyDonationListToGeo {
     String insertCoin;
     String getMileage;
     String date;
     String location_change;
 
-    public myDonationListToGeo(String insertCoin, String getMileage, String date, String location_change) {
+    public MyDonationListToGeo(String insertCoin, String getMileage, String date, String location_change) {
         this.insertCoin = insertCoin;
         this.getMileage = getMileage;
         this.date = date;

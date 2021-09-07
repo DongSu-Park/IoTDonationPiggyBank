@@ -1,7 +1,6 @@
-package com.flore.iotdonationpiggybank;
+package com.flore.iotdonationpiggybank.util.rvadapter;
 
 import android.content.Context;
-import android.location.Address;
 import android.location.Geocoder;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,17 +11,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.io.IOException;
+import com.flore.iotdonationpiggybank.R;
+import com.flore.iotdonationpiggybank.model.MyDonationListToGeo;
+
 import java.util.ArrayList;
-import java.util.List;
 
 public class UserDonationListAdapter extends RecyclerView.Adapter<UserDonationListAdapter.ItemViewHolder> {
 
-    private ArrayList<myDonationListToGeo> arrayList;
+    private ArrayList<MyDonationListToGeo> arrayList;
     private Geocoder geocoder;
     private Context context;
 
-    public UserDonationListAdapter(ArrayList<myDonationListToGeo> arrayList) {
+    public UserDonationListAdapter(ArrayList<MyDonationListToGeo> arrayList) {
         this.arrayList = arrayList;
     }
 

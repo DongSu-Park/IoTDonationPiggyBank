@@ -13,26 +13,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
         </activity>
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".NfcTagReadyActivity">
+        <activity android:name=".ui.activity.LoginActivity" />
+        <activity android:name=".ui.activity.RegisterActivity" />
+        <activity android:name=".ui.activity.NfcTagReadyActivity">
             <intent-filter>
                 <action android:name="android.nfc.action.TAG_DISCOVERED"/>
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".NfcReadActivity"/>
-        <activity android:name=".MileageUsesItemTargetActivity"/>
-        <activity android:name=".MileageUsesItemGetActivity"/>
-        <activity android:name=".NewsInfoActivity"/>
-        <activity android:name=".ManagerActivity"/>
+        <activity android:name=".ui.activity.NfcReadActivity"/>
+        <activity android:name=".ui.activity.MileageUsesItemTargetActivity"/>
+        <activity android:name=".ui.activity.MileageUsesItemGetActivity"/>
+        <activity android:name=".ui.activity.NewsInfoActivity"/>
+        <activity android:name=".ui.activity.ManagerActivity"/>
 
     </application>
 

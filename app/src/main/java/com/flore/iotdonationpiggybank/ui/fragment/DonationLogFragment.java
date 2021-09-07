@@ -1,6 +1,5 @@
-package com.flore.iotdonationpiggybank;
+package com.flore.iotdonationpiggybank.ui.fragment;
 
-import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
@@ -16,6 +15,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.flore.iotdonationpiggybank.R;
+import com.flore.iotdonationpiggybank.util.rvadapter.UserDonationListAdapter;
+import com.flore.iotdonationpiggybank.model.MyDonationList;
+import com.flore.iotdonationpiggybank.model.MyDonationListToGeo;
+import com.flore.iotdonationpiggybank.model.MyUser;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -27,7 +31,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Fragment2 extends Fragment {
+public class DonationLogFragment extends Fragment {
 
     private RecyclerView rv_donation_list;
     private RecyclerView.Adapter adapter;
@@ -35,15 +39,15 @@ public class Fragment2 extends Fragment {
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
 
-    private ArrayList<myDonationList> arrayList;
-    private ArrayList<myDonationListToGeo> geoArrayList;
+    private ArrayList<MyDonationList> arrayList;
+    private ArrayList<MyDonationListToGeo> geoArrayList;
 
     TextView tv_donation_check_fr2;
 
     ViewGroup viewGroup;
 
-    public static Fragment2 newInstance() {
-        return new Fragment2();
+    public static DonationLogFragment newInstance() {
+        return new DonationLogFragment();
     }
 
     @Nullable
@@ -68,7 +72,7 @@ public class Fragment2 extends Fragment {
             databaseReference.child("User").child(getuid).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    myUser myUser = dataSnapshot.getValue(com.flore.iotdonationpiggybank.myUser.class);
+                    MyUser myUser = dataSnapshot.getValue(MyUser.class);
                     tv_donation_check_fr2.setText(myUser.getTotalCoin() + "원");
                 }
 
@@ -85,7 +89,7 @@ public class Fragment2 extends Fragment {
                     // 파이어베이스 데이터베이스의 데이터를 받아옴
                     arrayList.clear(); // 기존 배열리스트 존재하지 않게 초기화
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        myDonationList myDonationList = snapshot.getValue(com.flore.iotdonationpiggybank.myDonationList.class);
+                        MyDonationList myDonationList = snapshot.getValue(MyDonationList.class);
                         arrayList.add(myDonationList); // 일단 myDonationList에 저장
                     }
 
@@ -98,7 +102,7 @@ public class Fragment2 extends Fragment {
                                 double lng = Double.parseDouble(arrayList.get(i).getLocation_lng());
                                 List<Address> getAddress = geocoder.getFromLocation(lat, lng,1);
 
-                                myDonationListToGeo myDonationListToGeo = new myDonationListToGeo(arrayList.get(i).getInsertCoin(), arrayList.get(i).getGetMileage(),
+                                MyDonationListToGeo myDonationListToGeo = new MyDonationListToGeo(arrayList.get(i).getInsertCoin(), arrayList.get(i).getGetMileage(),
                                         arrayList.get(i).getDate(), getAddress.get(0).getAddressLine(0));
 
                                 geoArrayList.add(myDonationListToGeo);

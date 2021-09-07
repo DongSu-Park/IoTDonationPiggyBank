@@ -1,4 +1,4 @@
-package com.flore.iotdonationpiggybank;
+package com.flore.iotdonationpiggybank.ui.activity;
 
 import android.app.PendingIntent;
 import android.content.Intent;
@@ -15,6 +15,11 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.flore.iotdonationpiggybank.util.nfcreader.NdefMessageParser;
+import com.flore.iotdonationpiggybank.util.nfcreader.ParsedRecord;
+import com.flore.iotdonationpiggybank.R;
+import com.flore.iotdonationpiggybank.util.nfcreader.TextRecord;
+import com.flore.iotdonationpiggybank.util.nfcreader.UriRecord;
 import com.google.common.base.Charsets;
 import com.google.common.primitives.Bytes;
 

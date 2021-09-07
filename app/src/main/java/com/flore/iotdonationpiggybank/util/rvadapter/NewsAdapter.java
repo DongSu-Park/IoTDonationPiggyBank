@@ -1,4 +1,4 @@
-package com.flore.iotdonationpiggybank;
+package com.flore.iotdonationpiggybank.util.rvadapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +9,10 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.flore.iotdonationpiggybank.ui.activity.NewsInfoActivity;
+import com.flore.iotdonationpiggybank.R;
+import com.flore.iotdonationpiggybank.ui.fragment.DonationNewsFragment;
 
 import java.util.ArrayList;
 
@@ -36,7 +40,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ItemViewHolder
         return listData.size();
     }
 
-    void addItem(NewsList newsList){
+    public void addItem(NewsList newsList){
         listData.add(newsList);
     }
 
@@ -63,7 +67,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ItemViewHolder
 
         @Override
         public void onClick(View view) {
-            Fragment4 fragment4 = new Fragment4();
+            DonationNewsFragment donationNewsFragment = new DonationNewsFragment();
 
             if (view.getId() == R.id.lv_newslist){
                 Intent intent = new Intent(context, NewsInfoActivity.class);

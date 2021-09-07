@@ -1,4 +1,4 @@
-package com.flore.iotdonationpiggybank;
+package com.flore.iotdonationpiggybank.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.flore.iotdonationpiggybank.R;
+import com.flore.iotdonationpiggybank.model.MyUser;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -25,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth loginAuth;
 
     Button btn_register; // 회원 가입 버튼
-    Button btn_login;
+    Button btn_login; // 로그인 버튼
     // Button btn_findpw;
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
@@ -74,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
                                 databaseReference.child("User").child(getuid).addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                        myUser myUser = dataSnapshot.getValue(com.flore.iotdonationpiggybank.myUser.class);
+                                        MyUser myUser = dataSnapshot.getValue(MyUser.class);
                                         String userProfile = myUser.getUserProfile();
 
                                         if (userProfile.equals("1"))  // 일반 사용자 화면으로

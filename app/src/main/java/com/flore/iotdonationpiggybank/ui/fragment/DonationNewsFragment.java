@@ -1,4 +1,4 @@
-package com.flore.iotdonationpiggybank;
+package com.flore.iotdonationpiggybank.ui.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,18 +11,22 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.flore.iotdonationpiggybank.util.rvadapter.NewsAdapter;
+import com.flore.iotdonationpiggybank.util.rvadapter.NewsList;
+import com.flore.iotdonationpiggybank.R;
+
 import java.util.Arrays;
 import java.util.List;
 
-public class Fragment4 extends Fragment {
+public class DonationNewsFragment extends Fragment {
     ViewGroup viewGroup;
 
     private RecyclerView rv_news_list;
     private RecyclerView.LayoutManager layoutManager;
     private NewsAdapter newsAdapter;
 
-    public static Fragment4 newInstance() {
-        return new Fragment4();
+    public static DonationNewsFragment newInstance() {
+        return new DonationNewsFragment();
     }
 
     @Nullable

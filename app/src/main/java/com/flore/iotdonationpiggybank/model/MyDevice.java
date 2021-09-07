@@ -1,6 +1,6 @@
-package com.flore.iotdonationpiggybank;
+package com.flore.iotdonationpiggybank.model;
 
-public class myDevice {
+public class MyDevice {
     String id;
     Double lat;
     Double lng;
